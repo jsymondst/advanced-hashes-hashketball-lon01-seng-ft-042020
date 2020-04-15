@@ -127,3 +127,90 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(check_player)
+  game_hash.each do |team,data|
+    data[:players].each do |player|
+      if player[:player_name] == check_player
+        return player[:points]
+      end
+    end
+  end
+  return 0
+end
+
+# puts num_points_scored("sausage")
+
+def shoe_size(check_player)
+  game_hash.each do |team,data|
+    data[:players].each do |player|
+      if player[:player_name] == check_player
+        return player[:shoe]
+      end
+    end
+  end
+  return 0
+end
+
+# puts shoe_size("Kemba Walker")
+
+def team_colors(check_team)
+  game_hash.each do |team,data|
+    if data[:team_name] == check_team
+      return data[:colors]
+    end
+  end
+  return []
+
+end
+
+# puts team_colors("Charlotte Hornets")
+
+def team_names()
+  [game_hash[:home][:team_name],game_hash[:away][:team_name]]
+end
+
+# puts team_names
+
+def player_numbers(check_team)
+  result = []
+  game_hash.each do |team,data|
+    if data[:team_name] == check_team
+      data[:players].each do |player|
+        result.push(player[:number])
+      end
+    end
+  end
+  return result
+end
+
+# puts player_numbers("Charlotte Hornets")
+
+def player_stats(check_player)
+  game_hash.each do |team,data|
+    data[:players].each do |player|
+      if player[:player_name] == check_player
+        return player
+      end
+    end
+  end
+  return {}
+end
+
+# puts player_stats("Kemba Walker")
+
+def big_shoe_rebounds()
+  max_shoe_size =0
+  rebound_result = 0
+  game_hash.each do |team,data|
+    data[:players].each do |player|
+      if player[:shoe] > max_shoe_size
+        max_shoe_size = player[:shoe]
+        rebound_result = player[:rebounds]
+      end
+    end
+  end
+  return rebound_result
+end
+
+puts big_shoe_rebounds
